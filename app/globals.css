@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+/* Class-based dark mode for next-themes */
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* macOS-inspired boyish palette — light */
+  --primary:       #0ea5e9;
+  --primary-light: #38bdf8;
+  --primary-dark:  #0284c7;
+  --cyan:          #22d3ee;
+  --blue:          #3b82f6;
+  --electric:      #06b6d4;
+
+  --bg:           #f0f5fb;
+  --bg-surface:   #ffffff;
+  --bg-card:      #e8eef8;
+  --text-primary: #0a1628;
+  --text-secondary: #4a6080;
+  --border:       rgba(14, 165, 233, 0.14);
+  --glass-bg:     rgba(255, 255, 255, 0.70);
+  --glass-border: rgba(14, 165, 233, 0.18);
+  --shadow-color: rgba(14, 165, 233, 0.15);
+
+  /* macOS vibrancy tint */
+  --vibrancy:     rgba(240, 248, 255, 0.72);
+}
+
+.dark {
+  /* macOS Space Gray / dark navy */
+  --bg:           #07080f;
+  --bg-surface:   #0a0d17;
+  --bg-card:      #0f1422;
+  --text-primary: #dde8f8;
+  --text-secondary: #4e6380;
+  --border:       rgba(14, 165, 233, 0.1);
+  --glass-bg:     rgba(10, 13, 23, 0.72);
+  --glass-border: rgba(14, 165, 233, 0.12);
+  --shadow-color: rgba(14, 165, 233, 0.2);
+  --vibrancy:     rgba(10, 13, 23, 0.75);
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Hide ALL browser cursors — custom cursor replaces them */
+@media (pointer: fine) {
+  html, body, *, *::before, *::after,
+  a, button, input, textarea, select, label,
+  [role="button"], [tabindex] {
+    cursor: none !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif);
+  transition: background-color 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #0ea5e9, #22d3ee);
+  border-radius: 99px;
+}
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection { background-color: rgba(14, 165, 233, 0.22); }
+
+/* ─── Typography ────────────────────────────────────────────── */
+.font-display { font-family: var(--font-space, -apple-system, BlinkMacSystemFont, system-ui, sans-serif); }
+
+/* ─── Gradient text — sky → cyan ──────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 45%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glass — macOS vibrancy ─────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+}
+
+/* ─── Card surface ────────────────────────────────────────── */
+.card-surface {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.28s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform;
+}
+.card-surface:hover {
+  box-shadow: 0 16px 48px var(--shadow-color);
+  transform: translateY(-4px);
+}
+
+/* ─── Interactive card — GPU-only hover lift ──────────────── */
+.hover-card {
+  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.28s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform;
+  transform: translateZ(0);
+}
+.hover-card:hover {
+  transform: translateY(-6px) translateZ(0);
+  box-shadow: 0 20px 60px var(--shadow-color);
+}
+
+/* ─── Gradient backgrounds ───────────────────────────────── */
+.gradient-bg {
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+}
+
+.gradient-bg-alt {
+  background: linear-gradient(135deg, #06b6d4, #0ea5e9, #3b82f6);
+}
+
+/* ─── macOS Traffic lights ────────────────────────────────── */
+.mac-traffic {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.mac-traffic span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.mac-close   { background: #ff5f57; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.12); }
+.mac-min     { background: #febc2e; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.12); }
+.mac-max     { background: #28c840; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.12); }
+
+/* ─── macOS Window chrome ─────────────────────────────────── */
+.mac-window {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 0 0 0.5px rgba(255,255,255,0.04);
+}
+.mac-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Orbs ───────────────────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.orb-primary { background: radial-gradient(circle, rgba(14,165,233,0.4), transparent 70%); }
+.orb-cyan    { background: radial-gradient(circle, rgba(34,211,238,0.3), transparent 70%); }
+.orb-blue    { background: radial-gradient(circle, rgba(59,130,246,0.25), transparent 70%); }
+
+/* ─── Section spacing ─────────────────────────────────────── */
+.section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+@media (min-width: 768px) { .section-padding { padding-top: 8rem; padding-bottom: 8rem; } }
+
+/* ─── Tag pill ────────────────────────────────────────────── */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: rgba(14, 165, 233, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+/* ─── Focus ring ──────────────────────────────────────────── */
+.focus-ring:focus-within {
+  border-color: #0ea5e9 !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+/* ─── Progress bar ────────────────────────────────────────── */
+.progress-track {
+  height: 5px;
+  border-radius: 99px;
+  background: var(--border);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #0ea5e9, #22d3ee);
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ─── Timeline dot ────────────────────────────────────────── */
+.timeline-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+  flex-shrink: 0;
+}
+
+/* ─── Cursor styles ───────────────────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s, height 0.15s, background 0.15s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(14,165,233,0.6);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring.hovering {
+  width: 52px;
+  height: 52px;
+  background: rgba(14,165,233,0.06);
+  border-color: #0ea5e9;
+}
+
+/* ─── Animations ──────────────────────────────────────────── */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ─── macOS dock glow ─────────────────────────────────────── */
+.dock-item:hover { filter: drop-shadow(0 0 8px rgba(14,165,233,0.6)); }
+
+/* ─── Tech marquee ──────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover { animation-play-state: paused; }
