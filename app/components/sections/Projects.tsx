@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FiGithub, FiExternalLink, FiStar } from "react-icons/fi";
 import { projects } from "@/utils/data";
@@ -88,15 +89,25 @@ export default function Projects() {
               >
                 {/* Project image / gradient */}
                 <div className={`relative h-44 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
-                  {/* Pattern overlay */}
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle at 25% 25%, white 1px, transparent 1px), radial-gradient(circle at 75% 75%, white 1px, transparent 1px)",
-                      backgroundSize: "40px 40px",
-                    }}
-                  />
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    /* Pattern overlay */
+                    <div
+                      className="absolute inset-0 opacity-20"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(circle at 25% 25%, white 1px, transparent 1px), radial-gradient(circle at 75% 75%, white 1px, transparent 1px)",
+                        backgroundSize: "40px 40px",
+                      }}
+                    />
+                  )}
 
                   {/* Hover overlay — pure CSS via group */}
                   <div
@@ -203,7 +214,7 @@ export default function Projects() {
           className="text-center mt-12"
         >
           <a
-            href="https://github.com/umairaltaf"
+            href="https://github.com/umairaltaf982"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm border hover:text-sky-400 hover:border-sky-400 transition-colors duration-200 hover:-translate-y-0.5 hover:transition-transform"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { FiArrowRight, FiClock, FiCalendar } from "react-icons/fi";
 import { blogPosts } from "@/utils/data";
@@ -47,7 +48,7 @@ export default function Blog() {
           transition={{ delay: 0.5 }}
           className="text-center mt-10"
         >
-          <button
+          <button onClick={() => window.location.href='https://medium.com/@umairaltaf982'}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl gradient-bg text-white font-semibold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all duration-200"
           >
             Read All Articles
@@ -72,13 +73,23 @@ function BlogCard({ post, index }: { post: (typeof blogPosts)[0]; index: number 
     >
       {/* Gradient header */}
       <div className={`relative h-40 bg-gradient-to-br ${post.tagColor} overflow-hidden`}>
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15), transparent 50%)",
-          }}
-        />
+        {post.image ? (
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15), transparent 50%)",
+            }}
+          />
+        )}
         <div
           className="absolute bottom-4 left-5 text-white/10 font-display font-black select-none"
           style={{ fontSize: "80px", lineHeight: 1 }}
@@ -125,7 +136,7 @@ function BlogCard({ post, index }: { post: (typeof blogPosts)[0]; index: number 
           {post.excerpt}
         </p>
 
-        <div
+        <div onClick={() => window.location.href='https://medium.com/@umairaltaf982'}
           className="flex items-center gap-1.5 text-xs font-semibold pt-3 border-t text-sky-400"
           style={{ borderColor: "var(--border)" }}
         >
