@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   description: string;
   gradient: string;
+  image?: string;
   tags: string[];
   liveUrl: string;
   githubUrl: string;
@@ -41,6 +42,7 @@ export interface BlogPost {
   tag: string;
   tagColor: string;
   slug: string;
+  image?: string;
 }
 
 export const personalInfo = {
@@ -117,17 +119,19 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "AslasChat – AI-Powered Chatbot Platform",
+    image: "/projects/image1.png",
     description:
       "Multi-tenant SaaS for document-trained AI chatbots (PDF/DOCX/TXT) with 40KB context budgeting, multi-modelsupport. Async lead extraction, Stripe webhook billing (3 tiers), Socket.IO notifications with per-owner room architecture. Social integrations with Whatsapp, Instagram and web embedded.",
     gradient: "from-indigo-500 via-purple-500 to-pink-500",
     tags: ["Next.js", "Nest.js", "Firebase", "MongoDB", "Docker"],
-    liveUrl: "#",
+    liveUrl: "https://www.aslaschat.ai",
     githubUrl: "https://github.com/Anas-Ali-3673/aslaschat.git",
     featured: true,
   },
   {
     id: 2,
     title: "Chinioti Wooden Art – Furniture Website",
+    image: "/projects/image2.png",
     description:
       "JWT/Google OAuth authentication, shopping cart with discounts, product filtering, interactive maps (Leaflet), protected routes, form handling, toast notifications, and responsive design with dark mode support.",
     gradient: "from-cyan-500 via-blue-500 to-indigo-500",
@@ -139,16 +143,18 @@ export const projects: Project[] = [
   {
     id: 3,
     title: "Desi Recipe – A Cooking Platform",
+    image: "/projects/image3.png",
     description:
       "Full-stack cooking app and admin panel (MERN); integrated Firebase with normalized data models and optimized page load & SEO.",
     gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     tags: ["Flutter", "React", "Node.js", "Docker", "Firebase", "Vercel"],
-    liveUrl: "#",
+    liveUrl: "https://admin-panel-pink-psi.vercel.app/login",
     githubUrl: "https://github.com/AsfandyarHashmi/cooking-app.git",
   },
   {
     id: 4,
     title: "Multilingual Dictionary Application",
+    image: "/projects/image4.png",
     description:
       "Multilingual Desktop Arabic-Urdu-Persian dictionary in Java with 3-tier architecture (Swing, BLL, DAL) using Factory and Facade patterns. Alkhalil and Farasa NLP for Arabic morphology and POS tagging; MySQL Abstract Factory DAL with DBCP2 pooling.",
     gradient: "from-orange-500 via-red-500 to-pink-500",
@@ -159,16 +165,18 @@ export const projects: Project[] = [
   {
     id: 5,
     title: "Railway Management System",
+    image: "/projects/image5.png",
     description:
       "Multi-role railway management system with real-time booking, scheduling, admin tools, Oracle DB, and .NET drag-and-drop UI.",
     gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
     tags: ["C#", ".NET", "Oracle", "MySQL"],
-    liveUrl: "#",
+    liveUrl: "https://www.linkedin.com/posts/umairaltaf982_railwaymanagement-automation-softwaredevelopment-ugcPost-7213999446508896257-43ex?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD_OSm8Bz8Fo6m6AEQ_8JZkO6udzEjJEuCM",
     githubUrl: "https://github.com/umairaltaf982/Railway_management_system.git",
   },
   {
     id: 6,
     title: "CryptoWallet 🔐",
+    image: "/projects/image6.png",
     description:
       "A decentralized cryptocurrency wallet application with blockchain functionality, built with Go backend and React frontend.",
     gradient: "from-yellow-500 via-amber-500 to-orange-500",
@@ -226,6 +234,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     title: "Web Scraping for Academic Research: A Case Study on NeurIPS Proceedings",
+    image: "/blogs/image1.png",
     excerpt:
       "Experience of scraping the NeurIPS (Neural Information Processing Systems) conference proceedings to download research papers and extract metadata.",
     date: "Feb 3, 2025",
@@ -237,6 +246,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 2,
     title: "TF-IDF vs One-Hot Encoding: A Dimensionality Reduction & Classification Study using KNN and Logistic Regression",
+    image: "/blogs/image2.png",
     excerpt:
       "how different feature encoding methods — TF-IDF and one-hot encoding — influence the performance of dimensionality reduction techniques (PCA and SVD) and classification models (KNN and Logistic Regression).",
     date: "May 4, 2025",
@@ -248,6 +258,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 3,
     title: "Detecting Deepfakes and Software Defects with Machine Learning: A Hands-on ML Pipeline in Python",
+    image: "/blogs/image3.png",
     excerpt:
       "Support Vector Machines (SVM), Logistic Regression, Perceptron, and Deep Neural Networks (DNN).",
     date: "May 4, 2025",
